@@ -58,7 +58,7 @@ password_mgr = urllib2.HTTPPasswordMgrWithDefaultRealm()
 #添加用户名和密码
 
 top_level_url = "http://example.com/foo/"
-
+##top_level_url实际上可以是完整的URL
 #如果知道realm,我们可以使用它代替“None”
 #password_mgr.add_password(None,top_level_url,username,password)
 
@@ -66,7 +66,14 @@ password_mgr.add_password(None,top_level_url,'weimin','lee123')
 
 #创建了一个新的handler
 handler = urllib2.HTTPBasicAuthHandler(password_mgr)
-
+"""默认的opener有正常情况的handlers:
+ProxyHandler,
+UnknownHandler,
+HTTPHandler,
+HTTPDefaultErroHandler,
+HTTPRedirectHandler,
+FTPHandler,
+..."""
 #创建“opener”
 opener = urllib2.build_opener(handler)
 a_url = 'http://www.baidu.com/'
