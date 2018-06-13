@@ -33,5 +33,47 @@ urllib2.urlopen()返回的应答对象response有两个很有用的方法info()�
 正常情况下，我们使用默认opener：通过urlopen
 但你能够创建个性的openers。
 4.2 Handles
+openers使用处理器handlers，所以的工作由handlers处理。
+每个handlers知道如何通过特定协议打开URls,或者如何处理URL打开时的各个方面。
+例如获取一个能处理cookie的opener，或者获取一个不重定向的opener。
 
+4.2.1
+要创建一个opener，可以实例化一个openerdirector
+然后调用.add_handler
+4.2.2
+同样，可以使用build_opener,这是一个更加方便的函数，用来创建opener对象，只需要一次函数调用。
+install_opener用来创建（全局）默认opener。这个表示调用URLopen将使用你安装的opener
+Opener对象有一个open方法
+该方法可以像URLopen函数那样直接用来获取urls:通常不必调用install_opener。
+4.2.3
+为了展示创建和安装一个Handler,我们将使用HTTPBasicAuthHandle(基本验证）。
 '''
+# -*-conding:utf-8 -*-
+import urllib2
+
+#创建一个密码管理者
+
+password_mgr = urllib2.HTTPPasswordMgrWithDefaultRealm()
+
+#添加用户名和密码
+
+top_level_url = "http://example.com/foo/"
+
+#如果知道realm,我们可以使用它代替“None”
+#password_mgr.add_password(None,top_level_url,username,password)
+
+password_mgr.add_password(None,top_level_url,'weimin','lee123')
+
+#创建了一个新的handler
+handler = urllib2.HTTPBasicAuthHandler(password_mgr)
+
+#创建“opener”
+opener = urllib2.build_opener(handler)
+a_url = 'http://www.baidu.com/'
+
+#使用opener获取一个URL
+opener.open(a_url)
+
+#安装 opener
+#现在所有调用urllib2.urlopen()将使用我们定义的opener，而不是默认的。
+urllib2.install_opener(opener)
