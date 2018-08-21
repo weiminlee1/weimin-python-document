@@ -1,0 +1,16 @@
+pandas读取csv文件
+    import numpy as np
+    import pandas as pd
+    inputdata = pd.read_csv('inputdata.csv',sep='\t', indexcol=0)##sep为分隔符，indexcol指定第0列为索引
+    print inputdata.info() #输出inputdata的行列信息，包括每行有多少列，是否含有空值，文件大小
+
+如果有某行为空值的话，可以删除这行
+  clean_data = inputdata.drop('row1') 或者 clean_data = inputdata.drop(['row1','row2'],axis=0)
+如果有某列不想要的话，可以删除这列
+  del inputdata['column1']--在原数据上进行删除 或者 inputdata.pop('column1') 或者 clean_data = inputdata.drop(['column1'],axis=1)
+##不论是行删除还是列删除，也不论是原数据删除，还是输出新变量删除，.drop()的方法都能达到目的，为了方便好记，熟练操作，所以应该尽量多使用.drop()方法
+  
+
+pd.dropna函数
+  clean_data = inputdata.dropna(how='all',axis=1) ##某列全部为na时，才删除
+  clean_data = inputdata.dropna(how='any',axis=1) ##某列只要有na,就删除这列
