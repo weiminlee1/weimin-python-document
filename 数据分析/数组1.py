@@ -60,5 +60,9 @@ D = np.hstack([A,B]) ##水平方向，左右方向合并
 E = np.concatenate((A,B,B,A),axis=0/1) ##0代表上下维度，1代表左右维度合并数组
 
 np.split(arr,2,axis=1) ##数组arr进行分裂
-·
+np.vsplit(arr,3) ##垂直分割
+np.hsplit(arr,2) ##水平分割
+
+
+
 
