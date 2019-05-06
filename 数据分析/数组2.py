@@ -69,5 +69,7 @@ pd.to_csv(options)
 
 res = pd.concat([df1,df2,df3],axix=0/1) #数组合并，index,columns要一样
 
+res = pd.concat([df1,df2],join='inner',ignore_index=True) 合并df1,df2适合index不一样
 
+res = pd.concat([df1,df2], axis=1, join_axes=[df1.index]) ##
 
