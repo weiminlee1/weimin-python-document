@@ -50,3 +50,15 @@ np.shape
 np.ndim
 np.type
 """
+arr.T ##转置，行变成列
+
+A = np.array([1,2,3])
+B = np.array([4,5,6])
+
+C = np.vstack([A,B]) ##垂直方向，上下方向合并
+D = np.hstack([A,B]) ##水平方向，左右方向合并
+E = np.concatenate((A,B,B,A),axis=0/1) ##0代表上下维度，1代表左右维度合并数组
+
+np.split(arr,2,axis=1) ##数组arr进行分裂
+·
+
