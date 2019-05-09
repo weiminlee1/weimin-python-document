@@ -45,6 +45,27 @@ print(match.group(2)) ##返回第二个括号的内容
 match = re.search(r'(?P<id>\d+), Date:(?P<date>.+)','ID:021523, Date:Feb/12/2017') ##添加标签
 print(match.group('id'))
 print(match.group('date'))
+                  
+                  
+##寻找所有
+#findall 返回列表
+ re.findall(r'r[ua]n','run ran ren'))
+  
+ #/ : or
+ re.findall(r'r(u|a)n','run ran ren'))
+
+##替换
+#re.sub()
+re.sub(r'r[au]ns', 'catches', 'dog run to catches') # 把run 替换为catches
+
+##分裂
+#re.split()
+re.split(r'[,;\.]', 'a;b,c.d;e') ##按给定的字符分割字符串
+
+##compile 先编译正则
+compiled_re = re.compile(r'r[ua]n')
+compiled_re.search('dog ran to cat')
+
 
 
 
