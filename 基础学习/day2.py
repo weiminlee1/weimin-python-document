@@ -47,4 +47,35 @@ with open('pickle_example.pickle', 'rb') as file:
  
  
   
-  ##多线程
+  ##多线程，同一时间分批量运行任务
+  import threading
+  def thread_job():
+    print('this is an added thread, number is %s' % threading.current_thread())
+  def main(): ##主函数
+    thread_added = threading.Thread(target=thread_job) ##添加线程
+    thread_added.start() #执行添加的线程
+    print(threading.active_count()) ##显示当前激活的threading数目
+    print(threading.enumerate())  ##显示具体的threading
+    print(threading.current_thread()) ##显示正在运行的线程
+  
+  if __name__=='__main__':
+    main()
+  
+  ##################
+import threading
+import time
+def thread_job():
+  print('T1 start\n')
+  for i in range(10):
+      time.sleep(0.1)
+  print('T1 finish\n')
+ 
+def main():
+  added_thread = threading.Thread(target=thread_job, name = 'T1') ##name 命名
+  added_thread.start()
+  print('all done\n') ##print这个任务与上面的任务同时进行
+  
+  added_thread.join() ##join()使T1任务完成后，在进行下一步的print('all done\n')
+  pirnt('all done\n')
+  
+           
